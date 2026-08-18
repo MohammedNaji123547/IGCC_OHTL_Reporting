@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OHTL-4A Cost Report — 1–16 August 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#17222D;
+    --ink-soft:#4A5A68;
+    --line:#C9D2DA;
+    --line-strong:#8FA0AE;
+    --paper:#FFFFFF;
+    --bg:#EEF1F4;
+    --blueprint:#0F3D5C;
+    --blueprint-deep:#0A2B42;
+    --amber:#C77F17;
+    --red:#B3382C;
+    --red-bg:#FBEDEB;
+    --green:#1E7A4E;
+    --green-bg:#EAF4EE;
+    --neutral-bg:#F2F5F7;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'IBM Plex Sans',Arial,sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    font-size:15px;
+    line-height:1.45;
+  }
+  .sheet{
+    max-width:1080px;
+    margin:24px auto;
+    background:var(--paper);
+    border:1px solid var(--line-strong);
+    box-shadow:0 2px 14px rgba(15,61,92,.10);
+  }
+
+  /* ===== Title block ===== */
+  .titleblock{
+    border-bottom:3px solid var(--blueprint-deep);
+    display:grid;
+    grid-template-columns:1fr auto;
+  }
+  .tb-main{padding:26px 32px 20px;}
+  .tb-eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--blueprint);margin-bottom:8px;
+  }
+  h1{
+    font-family:'IBM Plex Sans Condensed',sans-serif;
+    font-size:34px;font-weight:700;line-height:1.1;color:var(--blueprint-deep);
+  }
+  .tb-sub{margin-top:6px;color:var(--ink-soft);font-size:14px;}
+  .tb-meta{
+    display:grid;grid-template-columns:1fr 1fr;
+    border-left:1px solid var(--line-strong);
+    min-width:320px;
+  }
+  .tb-cell{
+    padding:12px 18px;border-bottom:1px solid var(--line);
+    display:flex;flex-direction:column;justify-content:center;
+  }
+  .tb-cell:nth-child(odd){border-right:1px solid var(--line);}
+  .tb-cell:nth-last-child(-n+2){border-bottom:none;}
+  .tb-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);}
+  .tb-value{font-weight:600;font-size:13.5px;margin-top:2px;}
+
+  /* ===== KPI strip ===== */
+  .kpis{
+    display:grid;grid-template-columns:repeat(4,1fr);
+    border-bottom:1px solid var(--line-strong);
+  }
+  .kpi{padding:20px 24px;border-right:1px solid var(--line);}
+  .kpi:last-child{border-right:none;}
+  .kpi-label{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);}
+  .kpi-value{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:27px;font-weight:600;margin-top:6px;color:var(--blueprint-deep);
+    font-variant-numeric:tabular-nums;
+  }
+  .kpi-note{font-size:12px;color:var(--ink-soft);margin-top:4px;}
+  .kpi-value.bad{color:var(--red);}
+  .kpi-value.warn{color:var(--amber);}
+  .kpi-value.good{color:var(--green);}
+
+  /* ===== Sections ===== */
+  section{padding:30px 32px 8px;}
+  section:last-of-type{padding-bottom:34px;}
+  .sec-head{display:flex;align-items:baseline;gap:14px;border-bottom:2px solid var(--blueprint-deep);padding-bottom:8px;margin-bottom:18px;}
+  .sec-no{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;color:var(--amber);letter-spacing:.08em;}
+  h2{font-family:'IBM Plex Sans Condensed',sans-serif;font-size:21px;font-weight:700;color:var(--blueprint-deep);}
+  .sec-note{font-size:12.5px;color:var(--ink-soft);margin-left:auto;font-family:'IBM Plex Mono',monospace;}
+  h3{font-family:'IBM Plex Sans Condensed',sans-serif;font-size:15.5px;font-weight:600;color:var(--blueprint);margin:2px 0 10px;letter-spacing:.02em;}
+
+  .grid-2{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;margin-bottom:8px;align-items:start;}
+  .grid-2 > div{min-width:0;}
+
+  /* ===== EV/AC compare bars ===== */
+  .compare{border:1px solid var(--line-strong);padding:18px 20px;}
+  .compare-row{display:flex;align-items:center;gap:14px;margin-bottom:16px;}
+  .compare-row:last-child{margin-bottom:0;}
+  .compare-label{width:70px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);flex-shrink:0;}
+  .compare-track{flex:1;background:var(--neutral-bg);border-radius:3px;height:26px;position:relative;overflow:hidden;}
+  .compare-fill{height:100%;display:flex;align-items:center;justify-content:flex-end;padding-right:10px;border-radius:3px;}
+  .compare-fill.ev{background:#4A90D9;}
+  .compare-fill.ac{background:var(--blueprint-deep);}
+  .compare-fill span{font-family:'IBM Plex Mono',monospace;font-size:12.5px;font-weight:600;color:#fff;}
+
+  /* ===== CPI dial-ish summary ===== */
+  .cpi-card{border:1px solid var(--line-strong);padding:20px;text-align:center;}
+  .cpi-big{font-family:'IBM Plex Mono',monospace;font-size:44px;font-weight:600;color:var(--amber);line-height:1;margin:6px 0 4px;}
+  .cpi-scale{background:var(--neutral-bg);height:8px;border-radius:4px;position:relative;margin:14px 0 6px;}
+  .cpi-scale-fill{position:absolute;left:0;top:0;height:100%;background:var(--amber);border-radius:4px;}
+  .cpi-scale-target{position:absolute;top:-4px;width:2px;height:16px;background:var(--blueprint-deep);}
+  .cpi-scale-labels{display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--ink-soft);}
+  .cpi-caption{font-size:12px;color:var(--ink-soft);margin-top:10px;}
+
+  /* ===== Tables ===== */
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin-bottom:20px;}
+  caption{text-align:left;font-family:'IBM Plex Sans Condensed',sans-serif;font-weight:600;font-size:15.5px;color:var(--blueprint);padding-bottom:8px;}
+  th{
+    font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:#fff;background:var(--blueprint);text-align:left;padding:8px 10px;font-weight:500;
+  }
+  th.num,td.num{text-align:right;font-variant-numeric:tabular-nums;}
+  td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top;}
+  td.num{font-family:'IBM Plex Mono',monospace;font-size:13px;}
+  tbody tr:nth-child(even){background:var(--neutral-bg);}
+  tr.total td{
+    border-top:2px solid var(--blueprint-deep);border-bottom:none;
+    font-weight:700;background:#E7EDF2;
+  }
+  tr.total td.num{font-weight:600;}
+  .pill{
+    display:inline-block;padding:1px 9px;border-radius:3px;
+    font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:600;
+  }
+  .pill.over{background:var(--red-bg);color:var(--red);}
+  .pill.near{background:#FCF3E3;color:var(--amber);}
+  .pill.on{background:var(--green-bg);color:var(--green);}
+
+  .callout{
+    border-left:4px solid var(--amber);background:#FCF6EC;
+    padding:12px 16px;font-size:13.5px;color:#5C4A1E;margin:0 0 22px;
+  }
+  .callout b{color:#3F3210;}
+
+  footer{
+    border-top:2px solid var(--blueprint-deep);
+    padding:14px 32px;display:flex;justify-content:space-between;
+    font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-soft);
+    letter-spacing:.05em;
+  }
+
+  @media (max-width:900px){
+    .kpis{grid-template-columns:1fr 1fr;}
+    .kpi{border-bottom:1px solid var(--line);}
+    .grid-2{grid-template-columns:1fr;}
+    .titleblock{grid-template-columns:1fr;}
+    .tb-meta{border-left:none;border-top:1px solid var(--line-strong);}
+  }
+  @media print{
+    body{background:#fff;}
+    .sheet{margin:0;border:none;box-shadow:none;max-width:none;}
+    section{page-break-inside:avoid;}
+    th,td,tr{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <!-- ============ TITLE BLOCK ============ -->
+  <header class="titleblock">
+    <div class="tb-main">
+      <div class="tb-eyebrow">OHTL-4A &middot; Cost Control</div>
+      <h1>OHTL-4A Cost Report</h1>
+      <div class="tb-sub">Earned Value, Actual Cost &amp; CTR Cost Breakdown</div>
+    </div>
+    <div class="tb-meta">
+      <div class="tb-cell"><span class="tb-label">Reporting Period</span><span class="tb-value">1 – 16 August 2026</span></div>
+      <div class="tb-cell"><span class="tb-label">Period Code</span><span class="tb-value">2026-08</span></div>
+      <div class="tb-cell"><span class="tb-label">Prepared By</span><span class="tb-value">Cost Control</span></div>
+      <div class="tb-cell"><span class="tb-label">Currency</span><span class="tb-value">USD</span></div>
+    </div>
+  </header>
+
+  <!-- ============ KPI STRIP ============ -->
+  <div class="kpis">
+    <div class="kpi">
+      <div class="kpi-label">Earned Value (EV)</div>
+      <div class="kpi-value">31,487</div>
+      <div class="kpi-note">Cumulative, period to date</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Actual Cost (AC)</div>
+      <div class="kpi-value">33,685</div>
+      <div class="kpi-note">Cumulative, period to date</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">CPI</div>
+      <div class="kpi-value warn">0.93</div>
+      <div class="kpi-note">EV / AC — near budget</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Margin</div>
+      <div class="kpi-value">40%</div>
+      <div class="kpi-note">Planned CTR margin</div>
+    </div>
+  </div>
+
+  <!-- ============ 1. EV, AC & CPI OVERVIEW ============ -->
+  <section id="overview">
+    <div class="sec-head">
+      <span class="sec-no">01</span>
+      <h2>EV, AC &amp; CPI Overview</h2>
+      <span class="sec-note">1 – 16 August 2026</span>
+    </div>
+    <div class="grid-2">
+      <div class="compare">
+        <h3>Cumulative EV vs AC</h3>
+        <div class="compare-row">
+          <span class="compare-label">EV</span>
+          <div class="compare-track">
+            <div class="compare-fill ev" style="width:93.5%;"><span>31,487</span></div>
+          </div>
+        </div>
+        <div class="compare-row">
+          <span class="compare-label">AC</span>
+          <div class="compare-track">
+            <div class="compare-fill ac" style="width:100%;"><span>33,685</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="cpi-card">
+        <h3>Cost Performance Index</h3>
+        <div class="cpi-big">0.93</div>
+        <div class="cpi-scale">
+          <div class="cpi-scale-fill" style="width:46.5%;"></div>
+          <div class="cpi-scale-target" style="left:50%;"></div>
+        </div>
+        <div class="cpi-scale-labels"><span>0.00</span><span>2.00</span></div>
+        <div class="cpi-caption">Below the 1.00 target line — actual cost is running 2,198 USD ahead of earned value for the period.</div>
+      </div>
+    </div>
+    <div class="callout">
+      <b>Reading note:</b> CPI of 0.93 means every dollar spent has earned 0.93 dollars of value so far — a modest overrun rather than a significant one. This follows a favourable July (CPI 1.02), so the period-on-period movement is worth watching rather than the absolute figure alone.
+    </div>
+  </section>
+
+  <!-- ============ 2. COST BREAKDOWN BY CTR ============ -->
+  <section id="breakdown">
+    <div class="sec-head">
+      <span class="sec-no">02</span>
+      <h2>Cost Breakdown by CTR</h2>
+      <span class="sec-note">1 – 16 August 2026</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>CTR #</th><th class="num">EV</th><th class="num">AC</th><th class="num">CPI</th>
+          <th class="num">Concrete</th><th class="num">Equipment</th><th class="num">IGCC</th><th class="num">Boarder</th><th class="num">Subcontractor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>OR146118</td>
+          <td class="num">31,486.92</td>
+          <td class="num">33,685.00</td>
+          <td class="num">0.93</td>
+          <td class="num">—</td>
+          <td class="num">7,967</td>
+          <td class="num">12,197</td>
+          <td class="num">3,172</td>
+          <td class="num">10,349</td>
+        </tr>
+        <tr class="total">
+          <td>Total</td>
+          <td class="num">31,486.92</td>
+          <td class="num">33,685.00</td>
+          <td class="num">0.93</td>
+          <td class="num">—</td>
+          <td class="num">7,967</td>
+          <td class="num">12,197</td>
+          <td class="num">3,172</td>
+          <td class="num">10,349</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="callout">
+      <b>Note:</b> all EV and AC for the period sit under a single CTR (<b>OR146118</b>). IGCC (12,197) and Subcontractor (10,349) are the two largest actual-cost components, together making up 67% of total AC. No Concrete cost was recorded against this CTR for the period.
+    </div>
+  </section>
+
+  <footer>
+    <span>OHTL-4A · COST REPORT · 1–16 AUGUST 2026</span>
+    <span>PREPARED BY COST CONTROL · ALL FIGURES IN USD</span>
+  </footer>
+</div>
+</body>
+</html>
